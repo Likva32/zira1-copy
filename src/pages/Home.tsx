@@ -93,11 +93,12 @@ export default function Home() {
 
             {/* Search box */}
             <div className="afu-4" style={{
-              background: 'rgba(20,27,40,0.9)',
+              background: 'rgba(14,20,32,0.97)',
               border: '1px solid var(--gold-border)',
-              backdropFilter: 'blur(16px)',
               padding: '1.5rem',
               maxWidth: 580,
+              position: 'relative',
+              zIndex: 10,
             }}>
               {/* Tabs */}
               <div style={{ display: 'flex', gap: '0', marginBottom: '1rem', borderBottom: '1px solid var(--border)' }}>

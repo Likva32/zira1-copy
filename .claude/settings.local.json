@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npx create-vite@latest . --template react-ts --force)",
+      "Bash(mv vite-project/* .)",
+      "Bash(mv vite-project/.gitignore .)",
+      "Bash(rm -rf vite-project)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Skill(update-config)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "WebSearch",
+      "WebFetch(domain:nominatim.org)",
+      "WebFetch(domain:apidocs.geoapify.com)",
+      "WebFetch(domain:operations.osmfoundation.org)",
+      "WebFetch(domain:photon.komoot.io)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}
