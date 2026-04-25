@@ -102,13 +102,13 @@ export default function PlacesSearch({ value, onChange, onSelect, placeholder = 
               onMouseDown={() => handleSelect(s)}
               style={{
                 display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
-                width: '100%', background: i === activeIdx ? 'var(--gold-dim)' : 'none',
+                width: '100%', background: i === activeIdx ? 'var(--gold-dim)' : 'var(--bg-surface)',
                 border: 'none', borderBottom: '1px solid var(--border)',
                 padding: '0.75rem 1rem', cursor: 'pointer', textAlign: 'left',
                 transition: 'background 0.15s',
               }}
               onMouseEnter={e => (e.currentTarget.style.background = 'var(--gold-dim)')}
-              onMouseLeave={e => (e.currentTarget.style.background = i === activeIdx ? 'var(--gold-dim)' : 'none')}
+              onMouseLeave={e => (e.currentTarget.style.background = i === activeIdx ? 'var(--gold-dim)' : 'var(--bg-surface)')}
             >
               <MapPin size={13} style={{ color: 'var(--gold)', flexShrink: 0, marginTop: 2 }} />
               <div>
