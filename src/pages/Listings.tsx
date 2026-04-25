@@ -1,8 +1,9 @@
 import { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, SlidersHorizontal, X, ChevronDown } from 'lucide-react';
+import { SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import { properties, type PropertyType } from '../data/properties';
 import PropertyCard from '../components/PropertyCard';
+import PlacesSearch from '../components/PlacesSearch';
 
 const TYPE_LABELS: Record<string, string> = {
   rent: 'For Rent', sale: 'For Sale', coworking: 'Coworking',
@@ -60,16 +61,19 @@ export default function Listings() {
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', height: 60 }}>
             {/* Search */}
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.6rem', background: 'var(--bg-mid)', border: '1px solid var(--border)', padding: '0 1rem' }}>
-              <Search size={14} style={{ color: 'var(--gold)', flexShrink: 0 }} />
-              <input
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder="Search by city, address, or keyword..."
-                style={{ flex: 1, background: 'none', border: 'none', outline: 'none', color: 'var(--warm-white)', fontSize: '0.82rem', fontFamily: 'var(--font-body)', padding: '0.65rem 0' }}
-              />
-              {search && <button onClick={() => setSearch('')} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: 0 }}><X size={14} /></button>}
-            </div>
+            <PlacesSearch
+              value={search}
+              onChange={setSearch}
+              onSelect={place => {
+                setSearch(place.city || place.name);
+                if (place.city) setSelectedCity(
+                  ['Tel Aviv','Jerusalem','Haifa','Ramat Gan',"Be'er Sheva",'Herzliya','Netanya',"Modi'in"].includes(place.city)
+                    ? place.city : 'All Cities'
+                );
+              }}
+              placeholder="Search city, address, or keyword…"
+              style={{ flex: 1 }}
+            />
 
             {/* Filter toggle */}
             <button onClick={() => setShowFilters(!showFilters)}

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, MapPin, ArrowRight, Play } from 'lucide-react';
+import { Search, ArrowRight, Play } from 'lucide-react';
 import { cities, properties } from '../data/properties';
 import PropertyCard from '../components/PropertyCard';
+import PlacesSearch from '../components/PlacesSearch';
 
 const STATS = [
   { value: '1,330', label: 'Offices for Rent' },
@@ -116,15 +117,15 @@ export default function Home() {
               </div>
 
               <form onSubmit={handleSearch} style={{ display: 'flex', gap: '0.5rem' }}>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.6rem', background: 'var(--bg-surface)', border: '1px solid var(--border)', padding: '0 1rem' }}>
-                  <MapPin size={14} style={{ color: 'var(--gold)', flexShrink: 0 }} />
-                  <input
-                    value={query}
-                    onChange={e => setQuery(e.target.value)}
-                    placeholder="City, neighborhood, address..."
-                    style={{ flex: 1, background: 'none', border: 'none', outline: 'none', color: 'var(--warm-white)', fontSize: '0.85rem', fontFamily: 'var(--font-body)', padding: '0.8rem 0' }}
-                  />
-                </div>
+                <PlacesSearch
+                  value={query}
+                  onChange={setQuery}
+                  onSelect={place => {
+                    setQuery(place.displayName);
+                    navigate(`/listings?type=${tab}&q=${encodeURIComponent(place.city || place.name)}`);
+                  }}
+                  placeholder="City, neighborhood, address…"
+                />
                 <button type="submit" className="btn-gold" style={{ gap: '0.4rem', flexShrink: 0 }}>
                   <Search size={14} /> Search
                 </button>
